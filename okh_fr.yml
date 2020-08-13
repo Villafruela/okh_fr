@@ -1,175 +1,153 @@
-# Nom du Manifeste / Projet 1.0
+{
+  # version: int.int.int
+  # date: YYYY-MM-DD
+  # email: name@domain.tld
+  # language: language-region
+  # URL: chaîne de caractères
+  # string: texte
+  # word: mot (texte)
+  # text: paragraphe de texte
 
-# Le contenu du manifeste de ce projet est licencié sous licence internationale Creative Comons 4.0
-# Les licences pour la modification et distribution du matériel, documentation, code source, etc. sont définies séparément.
+  # Propriétés clés du projet
+  # Metadonnées du Manifeste
 
-# Retirez tous les champs qui ne sont pas utilisés. Les commentaires (précédés d'un #) peuvent aussi être retirés
+  # Propriétés
+  *title <Nom du matériel>: texte;                              # Titre de l'objet/matériel
+  *description <Description du matériel>: texte;                # Description de l'objet/matériel
+  intended-use <Objectif d'utilisation du matériel>: texte;     # recommendé
+  keywords: [ texte ];                                          # au moins un mot clé recommandé
+  *project-link <Lien vers le projet>: URL;                     # Au moins un lien vers le projet ou sa documentation est requis
+  image <Lien vers une image>: URL;                             # recommendé
+  made <Quelqu'un a fabriqué ce matériel: booléen, false;
+  made-independently <Quelqu'un d'indépendant à fabriqué ce matériel>: booléen, false;
+  # license
+  *license: {
+    hardware: spdx;        # recommendé | La licence sous laquelle le matériel est distribué
+    documentation: spdx;   # recommendé | La licence sous laquelle la documentation est distribué
+    software: spdx;        # recommendé si un logiciel est utilisé | La licence sous laquelle le logiciel est distribué
+  };  # Au moins une licence est requise | Le format doit être un identifiant SPDX. See https://spdx.org/licenses/
+  licensor <Qui fourni la licence ?>: {
+    name: texte;           # Nom
+    affiliation: texte;    # Appartenance (à une association, entreprise, groupe etc.)
+    email: email;           # Adresse mail
+  };
 
-# Métadonnés du Projet (Manifeste)
-# les anglais utilisent le terme de "manifest" plutôt que "projet" qui est un terme plus vaste
+  ~okh-manifest-version: version, '1.0.0';                      # Version du Manifeste
+  date-created: date;                                           # Date de création au format AAAA-MM-JJ
+  ~date-updated: date;                                          # Date de mise à jour au format AAAA-MM-JJ
+  manifest-author <L'auteur de ce manifeste (Vous)>: {
+    *name: texte;           # Nom
+    affiliation: texte;     # Appartenance (à une association, entreprise, groupe etc.)
+    *email: email;           # Adresse mail
+  };
+  manifest-language: language; # Langue du Manifeste (i.e. fr)
+  manifest-is-translation <Si ce manifeste est une traduction, remplissez cette section>: {
+    title <Titre de l'original>: texte;
+    manifest <Adresse du manifeste OKH>: URL;
+    web <Adresse web du manifeste>: URL;
+    lang <Langue de l'original>: langue; (i.e. fr, us, uk etc.)
+  };
 
-date-created: [value]                      # Date de création au format AAAA-MM-JJ
+  contact <coordonnées du Contact>: {
+    name: texte;            # Nom
+    affiliation: texte;     # Appartenance (à une association, entreprise, groupe etc.)
+    email: email;           # Adresse mail
+    social: [{              # Réseaux sociaux
+      platform: texte;      # Nom de la plateforme (ex. Twitter, Facebook etc.)
+      user-handle: texte;   # Nom de l'utilisateur
+    }];
+  };
+  contributors: [{          # Contributeurs au projet (recommandé)
+    *name: texte;           # Nom
+    affiliation: texte;     # Appartenance (à une association, entreprise, groupe etc.)
+    email: email;           # Adresse mail
+  }];  # recommendé
 
-date-updated: [value]                      # Date de mise à jour au format AAAA-MM-JJ
+  version: version;
+  development-stage: 'idea'|'prototype'|'product'; # Etat du développement idée, prototype, produit
 
-manifest-author:                           # Auteur du manifeste / Projet
-  name: [value]                            # Nom | Champs requis au format texte
-  affiliation: [value]                     # Affiliation (à une association, entreprise, groupe etc.) | Texte | Facultatif
-  email: [value]                           # Adresse email
+  # documentation
+  documentation-home: URL;  # Au moins un lien vers le projet ou la documentation est requis
+  archive-download: URL;    # Lien vers d'éventuelles archives
+  design-files: [{          # Fichiers du design
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé
+  documentation-language: language; #Langue de la documentation
+  documentation-is-translation<Si la documentation est une traduction, remplir cette section>: {
+    title <Titre de l'original>: texte;
+    manifest <Adresse du manifeste OKH>: URL;
+    web <Adresse web>: URL;
+    lang <Langue de l'original>: langue;        # (i.e. fr, us, uk etc.)
+  };
+  schematics: [{            # Plans du matériel
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé si applicable
+  bom <Liste des matériaux>: URL;       # recommendé
+  tool-list <Liste des outils>: URL;    # recommendé
+  making-instructions: [{   # Instructions de fabrication
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé
+  manufacturing-files: [{   # Fichiers de fabrication
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé si applicable
+  risk-assessment: [{       # Evaluation des risques du projet
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé
+  tool-settings: [{         # réglage/paramétrage des outils
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé si applicable
+  quality-instructions: [{  # ìnstructions relatives à la qualité
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];
+  operating-instructions: [{# Instructions pour le fonctionnement
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé
+  maintenance-instructions: [{#Instructions de maintenance
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé
+  disposal-instructions: [{ #instructions relatives à l'installation du matériel
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé
+  software <Code source ou logiciel exécutable>: [{
+    path: URL;              # chemin absolu ou relatif
+    title: texte;           # nom du fichier
+  }];                       # recommendé si applicable
 
-manifest-language: [language-code]-[region] # fr-fr pour la france, fr-ca pour le canada français etc.
 
-documentation-language: [language-code]-[region]
-
-manifest-is-translation:                   # Si ce manifeste est la traduction d'un autre manifeste, donner les infos de l'original
-  title: [value]                           # Texte | Titre du projet original
-  manifest: [value]                        # URL - chemin absolu | localisation du manifeste OKH
-  web: [value]                             # URL - chemin absolu | site web si existant
-  lang: [language]-[region]                # Langue d'origine du projet
-
-documentation-is-translation:              # Si ce manifeste contient de la documentation traduite d'un autre projet, donner les infos de l'original
-  title: [value]                           # Texte | Titre du manifeste original
-  manifest: [value]                        # URL - chemin absolu | localisation du manifeste OKH
-  web: [value]                             # URL - chemin absolu | site web si existant
-  lang: [language]-[region]                # Langue d'origine de la documentation traduite
-
-# Propriétés du projet
-
-title: [value]                             # Requis | texte | Titre pour identifier le projet
-
-description: |                             # Requis | paragraphe décrivant le projet
-  [value]
-
-intended-use: |                            # recommandé | Paragraphe expliquant l'usage recherché du projet
-  [value]
-
-keywords:                                  # Au moins un mot clé est recommandé pour faciliter le référencement | texte, tableau
-  - [keyword 1]
-  - [keyword 2]
-
-project-link: [value]                      # Le lien vers le projet ou la documentation est requis, sinon recommandé | url en chemin absolu
-
-health-safety-notice: |                    # Paragraphe concernant les risque possibles vis à vis de la santé
-  [value]
-
-contact:                                   # Coordonnées du contact
-  name: [value]                            # Nom | texte
-  affiliation: [value]                     # Affiliation | texte
-  email: [value]                           # Adresse email
-  social:                                  # Réseau social
-    - platform: [value]                    # Nom de la plateforme (ex. Twitter, Facebook etc.)
-      user-handle: [value]                 # Nom de l'utilisateur
-    - platform: [value]                    # Nom de la plateforme (ex. Twitter, Facebook etc.)
-      user-handle: [value]                 # Nom de l'utilisateur
-
-
-contributors:                              # Contributeurs au projet (recommandé)
-  - name: [contributor 1]                  # Nom | texte
-    affiliation: [value]                   # Affiliation | texte
-    email: [value]                         # Adresse email
-  - name: [contributor 2]                  # Nom | texte
-    affiliation: [value]                   # Affiliation | texte
-    email: [value]                         # Adresse email
-
-image: [value]                             # Image du projet recommandé | chemin absolu ou relatif
-
-version: [value]                           # Version du projet | texte
-
-development-stage: [value]                 # Stade de développement | texte
-
-made: [true/false]                         # Si le projet a été réalisé | booléen - vrai ou faux
-
-made-independently: [true/false]           # Si le projet a été réalisé de manière indépendante| booléen - vrai ou faux
-
-standards-used:                            # Quels standards ont été utilisés ?
-  - standard-title: [value]                # Requis | Nom du standard utilisé dans le design ou la documentation
-    publisher: [value]                     # Editeur du standard
-    reference: [value]                     # Identifiant du standard (e.g. ISO 9001)
-    certification:                         # Si une certification a été obtenue confirmant l'application et le respect du standard
-      - certifier: [value]                 # Individu ou organisation ayant fourni la certification. Utiliser "Self" pour une auto-certification
-        date-awarded: [value]              # Date d'obtention de la certification
-        link: [value]                      # Lien vers la preuve de la certification (e.g. certificat). Utiliser un chemin absolu vers la resource externe ou un chemin relatif la preuve dans la documentation.
-
-derivative-of:                             # Si votre projet est un dérivé d'un projet déjà existant (comportant des changements majeurs)
-  title: [value]                           # Titre du projet original | texte
-  manifest: [value]                        # URL - chemin absolu | localisation du manifeste OKH
-  web: [value]                             # URL - chemin absolu | site web du projet
-
-variant-of:                                # Si votre projet est une variante d'un projet déjà existant (comportant des changements mineurs)
-  title: [value]                           # Titre du projet original | texte
-  manifest: [value]                        # URL - chemin absolu | localisation du manifeste OKH
-  web: [value]                             # URL - chemin absolu | site web du projet
-
-sub:                                       # Si votre projet est une sous-partie d'un projet déjà existant
-  title: [value]                           # Titre du projet original | texte
-  manifest: [value]                        # URL - chemin absolu | localisation du manifeste OKH
-  web: [value]                             # URL - chemin absolu | site web du projet
-
-# Licence(s)
-
-license:                                   # Au moins une licence est requise | Le format devrait contenir un identifiant SPDX. Voir https://spdx.org/licenses/
-  hardware: [value]                        # Recommandé | Licence sous laquelle le matériel est distribué
-  documentation: [value]                   # Recommandé | Licence sous laquelle la documentation est distribuée
-  software: [value]                        # Recommandé si un logiciel est utilisé dans le projet | Licence sous laquelle le logiciel est distribué
-
-licensor:                                  # Personne concédant la licence
-  name: [value]                            # Nom | texte
-  affiliation: [value]                     # Affiliation | texte
-  email: [value]                           # Adresse email
-
-# Documentation
-
-documentation-home: [value]               # Au moins un lien vers le projet ou la documentation est requis | chemin absolu
-
-archive-download: [value]                 # Lien vers d'éventuelles archives | chemin absolu ou relatif
-
-design-files:                             # Fichiers du design | recommandé
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | text
-
-schematics:                               # Schémas (si applicable)
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-bom: [value]                              # Liste des composants nécessaires au projet (bill of materials) recommandé | chemin absolu ou relatif | rediriger le maker vers cette liste
-
-tool-list: [value]                        # Liste des outils (recommandé) | chemin absolu ou relatif | Rediriger le maker vers la liste d'outils nécéssaire pour construire l'objet
-
-making-instructions:                      # Instructions d'assemblage | Recommandé
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-manufacturing-files:                      # Fichiers de fabrication / usinage | Recommandé si applicable
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-risk-assessment:                          # Informations sur les risques du projet
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-tool-settings:                            # Informations sur le réglage des outils | si applicable
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-quality-instructions:                     # Informations sur la qualité | si applicable
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-operating-instructions:                   # Informations sur le fonctionnement de l'objet | recommandé
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-maintenance-instructions: [value]         # Informations sur l'entretien de l'objet | recommandé
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-disposal-instructions: [value]            # Information sur la disposition du projet | recommandé
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-software:                                 # Recommandé si applicable | Code source ou logiciel utilisé par l'objet
-  - path: [value]                         # Chemin absolu ou relatif
-    title: [value]                        # Nom du fichier | texte
-
-# Champs définis par l'utilisateur
-# Rajoutez n'importe quel champ supplémentaire ou personnalisé après cette ligne
+  health-safety-notice: texte; # Notice liée à la santé et la sécurité
+  standards-used: [{        # Usage de standard
+    *standard-title: texte; # Titre du standard utilisé dans le développement ou la documentation
+    publisher: texte;       # Editeur du standard
+    reference: texte;       # Identifiant de réference du standard (i.e. ISO 9001)
+    certification: [{       # Certification du projet
+      certifier: texte;     # Individu ou institution ayant attribué le standard. Utiliser "Self" (soi-même) pour une auto-certification
+      date-awarded: date;   # Date de l'obtention de la certification
+      link: URL;            # Lien vers la preuve de certification (i.e. certificat). utiliser un chemin absolu vers la ressource externe ou un chemin absolu ou relatif vers la preuve à l'intérieur de la documentation.
+    }];                     # Si une certification a été attribuée cofirmant l'utilisation d'un standard
+  }];
+  derivative-of <Ce projet est un dérivé de>: {
+    title: texte;           # Titre de l'original
+    manifest: URL;          # adresse du manifeste OKH
+    web: URL;               # adresse web
+  };
+  variant-of <Ce projet est une variante de>: {
+  title: texte;           # Titre de l'original
+  manifest: URL;          # adresse du manifeste OKH
+  web: URL;               # adresse web
+  };
+  sub-parts: [{           # Ce projet utilise les modules ou sous-parties suivantes
+  title: texte;           # Titre de l'original
+  manifest: URL;          # adresse du manifeste OKH
+  web: URL;               # adresse web
+  }];
+}
